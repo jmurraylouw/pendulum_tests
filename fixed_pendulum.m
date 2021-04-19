@@ -1,6 +1,8 @@
 %% For displaying and generating csv files from stationary pendulum payload tests
 
 % When the UI appears, choose the appropriate .ulg file
+% This will plot the angle vs time of that experiment and generate a csv
+% file
 
 disp('start')
 
@@ -69,10 +71,10 @@ plot(combo_time, rad2deg(payload_vector_angles(:,1)));
 legend('x');
 title('payload_vector_angles');
 
-figure;
-plot(combo_time, [j_x, j_y]);
-legend('jx', 'jy');
-title('euler angles');
+% figure;
+% plot(combo_time, [j_x, j_y]);
+% legend('jx', 'jy');
+% title('euler angles');
 
 %% Write data to csv files
 % 
