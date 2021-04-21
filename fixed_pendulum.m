@@ -12,7 +12,8 @@ quat_rot_vect = @(vect, quat) quatrotate(quatinv(quat), vect); % Rotates vector 
 %% Load topics from csv into matrix
 load_csv_again = 1;
 if load_csv_again
-    [ulog_name,csv_folder] = uigetfile('./logs/*.ulg', 'Choose ulog file to access') % GUI to choose ulog file. % [ulog filename, path to folder with csv files]
+    current_dir = pwd;
+    [ulog_name,csv_folder] = uigetfile([current_dir, '/*.ulg'], 'Choose ulog file to access') % GUI to choose ulog file. % [ulog filename, path to folder with csv files]
     ulog_name = erase(ulog_name, '.ulg'); % remove file extention
 
     adc_report = readmatrix(strcat(csv_folder, ulog_name, '_', 'adc_report', '_0.csv'));
@@ -71,10 +72,10 @@ plot(combo_time, rad2deg(payload_vector_angles(:,1)));
 legend('x');
 title('payload_vector_angles');
 
-% figure;
-% plot(combo_time, [j_x, j_y]);
-% legend('jx', 'jy');
-% title('euler angles');
+figure;
+plot(combo_time, [j_x, j_y]);
+legend('jx', 'jy');
+title('euler angles');
 
 %% Write data to csv files
 % 
