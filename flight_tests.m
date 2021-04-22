@@ -161,11 +161,13 @@ disp('plotted')
 
 
 %% Write data to csv files
-% 
+% Current folder should be in project folder for this to work
 data_table = array2table([combo_time, rad2deg(payload_vector_angles(:,1)), pos(:,1), vel(:,1)]);
 
 data_table.Properties.VariableNames = {'t', 'angle', 'x_pos', 'x_vel'};
-writetable(data_table, ['csv/fixed/', csv_folder(end-11:end-1), '.csv'])
+csv_index = strfind(csv_folder,'/');
+csv_name = csv_folder( csv_index(end-1)+1 : end-1 )
+writetable(data_table, ['csv/flights/', csv_name, '.csv'])
 
 disp('csv generated')
 
