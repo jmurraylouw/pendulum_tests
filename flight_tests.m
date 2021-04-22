@@ -112,30 +112,29 @@ close all;
 figure;
 plot(combo_time, rad2deg(heading));
 title('heading');
-% 
-% figure;
-% plot(combo_time, joy_quat);
-% title('joy_quat');
-
-figure;
-plot(combo_time, (uav_vector));
-legend('x', 'y', 'z');
-title('uav_vector');
 
 % figure;
-% plot(combo_time, rad2deg(uav_vector_angles));
+% plot(combo_time, (uav_vector));
 % legend('x', 'y', 'z');
-% title('uav_vector_angles');
+% title('uav_vector');
 
 figure;
-plot(combo_time, (payload_vector));
+plot(combo_time, rad2deg(uav_vector_angles));
 legend('x', 'y', 'z');
-title('payload_vector');
+title('uav_vector_angles');
 
 figure;
 plot(combo_time, rad2deg(payload_vector_angles));
 legend('x', 'y');
 title('payload_vector_angles');
+
+%% Position and velocity
+
+figure
+plot(pos_ts)
+
+figure
+plot(vel_ts)
 
 %%
 figure;
