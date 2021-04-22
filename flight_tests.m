@@ -7,7 +7,8 @@ quat_rot_vect = @(vect, quat) quatrotate(quatinv(quat), vect); % Rotates vector 
 %% Load topics from csv into matrix
 load_csv_again = 1;
 if load_csv_again
-    [ulog_name,csv_folder] = uigetfile('/home/esl/Masters/QGroundControl/Logs/HoneyBee/*.ulg', 'Choose ulog file to access') % GUI to choose ulog file. % [ulog filename, path to folder with csv files]
+    current_dir = pwd;
+    [ulog_name,csv_folder] = uigetfile([current_dir, '/*.ulg'], 'Choose ulog file to access') % GUI to choose ulog file. % [ulog filename, path to folder with csv files]
     ulog_name = erase(ulog_name, '.ulg'); % remove file extention
 
     adc_report = readmatrix(strcat(csv_folder, ulog_name, '_', 'adc_report', '_0.csv'));
@@ -15,6 +16,7 @@ if load_csv_again
 
     disp('loaded csv files')
 end
+
 %% Time matching
 % have common time series so no extrapolation occurs between timeseries
 
@@ -121,20 +123,24 @@ title('heading');
 figure;
 plot(combo_time, rad2deg(uav_vector_angles));
 legend('x', 'y', 'z');
-title('uav_vector_angles');
+title('uav vector angles');
 
 figure;
-plot(combo_time, rad2deg(payload_vector_angles));
+plot(combo_time, rad2deg(payload_vector_angles(:,2)));
 legend('x', 'y');
-title('payload_vector_angles');
+title('payload vector angles');
 
 %% Position and velocity
 
 figure
-plot(pos_ts)
+plot(combo_time, pos(:,:))
+title('position')
+legend('x', 'y', 'z')
 
 figure
-plot(vel_ts)
+plot(combo_time, vel(:,1))
+title('velocity')
+legend('x', 'y', 'z')
 
 %%
 figure;
