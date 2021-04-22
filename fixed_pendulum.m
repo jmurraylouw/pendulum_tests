@@ -82,7 +82,7 @@ title('euler angles');
 data_table = array2table([combo_time, rad2deg(payload_vector_angles(:,1))]);
 
 data_table.Properties.VariableNames = {'t', 'angle'};
-writetable(data_table, ['csv/', csv_folder(end-11:end-1), '.csv'])
+writetable(data_table, ['csv/fixed/', csv_folder(end-11:end-1), '.csv'])
 
 disp('csv generated')
 

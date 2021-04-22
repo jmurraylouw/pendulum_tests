@@ -133,7 +133,7 @@ title('payload vector angles');
 %% Position and velocity
 
 figure
-plot(combo_time, pos(:,:))
+plot(combo_time, pos(:,1))
 title('position')
 legend('x', 'y', 'z')
 
@@ -158,4 +158,14 @@ title('j_y');
 % legend('Z', 'Y', 'X');
 
 disp('plotted')
+
+
+%% Write data to csv files
+% 
+data_table = array2table([combo_time, rad2deg(payload_vector_angles(:,1)), pos(:,1), vel(:,1)]);
+
+data_table.Properties.VariableNames = {'t', 'angle', 'x_pos', 'x_vel'};
+writetable(data_table, ['csv/fixed/', csv_folder(end-11:end-1), '.csv'])
+
+disp('csv generated')
 
